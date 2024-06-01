@@ -75,3 +75,8 @@ const handleLogin = async()=>{
     }
 
 }
+
+let clickStore = (category)=>{
+    location.replace("storeList.html");
+    localStorage.setItem("category", category)
+}
