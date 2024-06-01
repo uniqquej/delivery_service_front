@@ -1,0 +1,25 @@
+#storeListBox {
+    width: 95%;
+}
+
+.storeInfo {
+    padding: 5px;
+    border-top : 1px solid gray;
+    border-bottom : 1px solid gray;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+.storeThumbnail{
+    margin-right: 20px;
+}
+
+.storeThumbnail > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  
+}
