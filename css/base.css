@@ -30,3 +30,8 @@
     text-decoration: none;
     color: black;
 }
+
+.content{
+    margin-top: 50px;
+    width: 100%;
+}

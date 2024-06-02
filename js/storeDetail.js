@@ -103,9 +103,11 @@ let orderMenu = async()=>{
 
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
     var checkValues = [];
+    var counts = [];
     
     checkboxes.forEach(check=>{
         checkValues.push(check.value);
+        counts.push($("#count_"+check.value).val());
     });
     
     if(checkValues.length==0) alert("선택된 메뉴가 없습니다.");
@@ -120,7 +122,8 @@ let orderMenu = async()=>{
                 "result_description": "order success"
             },
             'body':{
-                "store_menu_id_list" : checkValues
+                "store_menu_id_list" : checkValues,
+                "count_list": counts
             }
         })
     
