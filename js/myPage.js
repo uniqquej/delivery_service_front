@@ -10,30 +10,36 @@ let loadCurrentOrderList = async()=>{
     })
 
     let resJson = await res.json();
-    console.log(resJson);
 
     let orderListBox = document.getElementById("orderListBox");
     let orderHtml=""
 
     resJson.body.forEach(res => {
-        console.log(res)
-        orderHtml += `<div>
-                        <span>주문 시간: ${res.user_order_response.ordered_at}</span>
+        let orderDate = res.user_order_response.ordered_at
+        
+        orderHtml += `<div class="orderInfo">
+                        <button class="btn btn-dark">주문 상세</button>
+                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
+                        <br>
                         <div class="orderStoreInfo">
-                            <h5>${res.store_response.name}</h5>
+                            <span class="storeName"><b>${res.store_response.name}</b></span>
                             <span>${res.store_response.phone_number}</span>
                         </div>`;
         res.user_order_menu_response_list.forEach(
             menu=>{
-                orderHtml += `  <div class="orderMenuInfo">
-                            <div>
-                                <h5>${menu.menu_name}</h5>
-                                <span>수량 : ${menu.count}</span>
-                                <span>${menu.amount * menu.count}</span>
-                            </div>  
-                        </div>`
+                orderHtml += `<div class="orderMenuInfo">
+                                <div>
+                                    <span class="menuName">${menu.menu_name}</span>
+                                    <span>x ${menu.count}</span>
+                                    <span>${menu.amount * menu.count} 원</span>
+                                </div>
+                            </div>`
             })
-        orderHtml += `</div>`   
+        orderHtml += `
+                        <br>
+                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
+                        </div>
+                        `   
     });
     
     orderListBox.innerHTML = orderHtml;
@@ -49,28 +55,38 @@ let loadOrderList = async()=>{
     })
 
     let resJson = await res.json();
-    console.log(resJson);
 
-    let storeInfo = resJson.body.store_response;
-    console.log(storeInfo)
     let orderListBox = document.getElementById("orderListBox");
-    let orderHtml = `<div>
-                        <div class="orderStoreInfo">
-                            <h5>${storeInfo.name}</h5>
-                            <span>${storeInfo.phone_number}</span>
-                        </div>`;
+    let orderHtml=""
 
-    resJson.body.user_order_menu_response_list.forEach(menu => {
-        console.log(menu)
-        orderHtml += `  <div class="orderMenuInfo">
-                            <div>
-                                <h5>${menu.name}</h5>
-                                <span>수량 : ${menu.count}</span>
-                                <span>${menu.amount * menu.count}</span>
-                            </div>  
-                        </div>`
+    resJson.body.forEach(res => {
+        let orderDate = res.user_order_response.ordered_at
+        
+        orderHtml += `<div class="orderInfo">
+                        <button class="btn btn-dark">주문 상세</button>
+                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
+                        <br>
+                        <div class="orderStoreInfo">
+                            <span class="storeName"><b>${res.store_response.name}</b></span>
+                            <span>${res.store_response.phone_number}</span>
+                        </div>`;
+        res.user_order_menu_response_list.forEach(
+            menu=>{
+                orderHtml += `<div class="orderMenuInfo">
+                                <div>
+                                    <span class="menuName">${menu.menu_name}</span>
+                                    <span>x ${menu.count}</span>
+                                    <span>${menu.amount * menu.count} 원</span>
+                                </div>
+                            </div>`
+            })
+        orderHtml += `
+                        <br>
+                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
+                        </div>
+                        `   
     });
-    orderHtml += `</div>`
+    
     orderListBox.innerHTML = orderHtml;
 }
 
