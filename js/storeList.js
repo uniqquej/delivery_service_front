@@ -12,7 +12,7 @@ let loadStoreList = async(category)=>{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
         },
-        method: 'get'
+        method: 'GET'
     })
 
     let resJson = await res.json();
@@ -25,7 +25,7 @@ let loadStoreList = async(category)=>{
         if(store.thumbnail_url=="string"){
             store.thumbnail_url = "https://mblogthumb-phinf.pstatic.net/MjAxODAzMDNfMjU4/MDAxNTIwMDQxODA4Mjc0.gR3L5xx3IbpACbvRRF9j9xjJmO-EPAY35oF1AdBnDcog.WZyeqFi6cMmH-v-R-ec44Ny6ZgVyAJIYMT78p4Rxbkwg.PNG.osy2201/2_%2850%ED%8D%BC%EC%84%BC%ED%8A%B8_%ED%9A%8C%EC%83%89%29_%ED%9A%8C%EC%83%89_%EB%8B%A8%EC%83%89_%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4_180303.png?type=w800"
         }
-        storeHtml += `  <div class="storeInfo">
+        storeHtml += `  <div class="storeInfo" onclick="clickStore(${store.id})">
                             <div class="storeThumbnail">
                                 <img src="${store.thumbnail_url}">
                             </div>
@@ -37,5 +37,9 @@ let loadStoreList = async(category)=>{
     });
 
     storeListBox.innerHTML = storeHtml;
+}
 
+let clickStore = (storeId) =>{
+    localStorage.setItem("storeId",storeId);
+    location.replace("storeDetail.html");
 }

@@ -1,0 +1,65 @@
+.wrap{
+    margin-top: 60px;
+    width: 100%;
+}
+
+#storeBox{
+    display: flex;
+    
+    background-color: green;
+}
+
+#menuListBox{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: blue;
+}
+
+.storeMenu{
+    display: flex;
+    padding: 5px;
+}
+
+.storeThumbnail{
+    margin-right: 20px;
+}
+
+.storeThumbnail > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  
+}
+
+.storeInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menuThumbnail{
+    margin-right: 20px;
+}
+
+.menuThumbnail > img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.orderBox{
+    padding: 8px;
+    position: absolute;
+    width: 100%;
+    bottom: 2px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.orderBox > span {
+    margin-right: auto;
+}
