@@ -6,6 +6,7 @@ window.onload = ()=>{
 }
 
 let loadStoreInfo = async(storeId)=>{
+    
     const res = await fetch(`${mainUrl}/api/store/detail?storeId=${storeId}`,{
         headers:{
             'content-type':'application/json',
@@ -29,7 +30,7 @@ let loadStoreInfo = async(storeId)=>{
                                 <h5>${store.name}</h5>
                                 <span>${store.phone_number}</span>
                                 <span>${store.address}</span>
-                                <span>${store.star}</span>
+                                <span>⭐ ${store.star}</span>
                                 <span><b>최소주문</b> ${store.minimum_delivery_amount} 원</span>
                             </div>
                             
@@ -46,24 +47,52 @@ let loadStoreInfo = async(storeId)=>{
         menuListHtml += `
                    <div class="storeMenu" >
                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="${menu.id}">
+                            <input onchange="getOrderTotalPrice(this)" id="menuCheckBox${menu.id}" class="form-check-input" type="checkbox" value="${menu.id}">
                        </div>
                        <div class="menuThumbnail">
                            <img src="${menu.thumbnail_url}">
                        </div>
-                       <div>
+                       <div class="menuInfo">
                            <h5>${menu.name}</h5>
-                           <p>${menu.amount}원</p>
-                           <p>like ${menu.like_count}</p>
-                       </div>  
+                           <p id="price_${menu.id}">${menu.amount}원</p>
+                           <p>❤ ${menu.like_count}</p>
+                       </div>
+                       <div class="countBox">
+                            <input type="number" id="count_${menu.id}" value=1 min="1"
+                            onchange="changeCount(document.getElementById('menuCheckBox${menu.id}'))">  
+                       </div>
                    </div>
                    `
     })
 
     menuListBox.innerHTML = menuListHtml;
 
+}
+
+let getOrderTotalPrice = (obj)=> {
+    console.log(obj)
+    var orderTotalPrice = Number($("#totalPrice").text());
+    var menuId = obj.value;
+    var priceText = $("#price_"+menuId).text();
+    var price = Number(priceText.slice(0,-1))
+    var count = $("#count_" + menuId).val();
+
+    if(obj.dataset.oldCount > count) orderTotalPrice -= price*obj.dataset.oldCount;
 
 
+    if(obj.checked==true) {
+        orderTotalPrice += price*count;
+    }
+    else orderTotalPrice -= price*count;
 
+    obj.dataset.oldCount = count;
 
+    $("#totalPrice").html(orderTotalPrice);
+}
+
+let changeCount = (checkObj)=> {
+
+    if(checkObj.checked==true) {
+        getOrderTotalPrice(checkObj)
+    };
 }
