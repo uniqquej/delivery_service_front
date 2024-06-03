@@ -1,11 +1,11 @@
 #storeListBox {
     width: 95%;
     margin-top: 60px;
+    overflow-y: auto;
 }
 
 .storeInfo {
     padding: 5px;
-    border-top : 1px solid gray;
     border-bottom : 1px solid gray;
 
     display: flex;

@@ -3,6 +3,7 @@ let mainUrl = "http://127.0.0.1:8080";
 window.onload = ()=>{
     let storeId = localStorage.getItem("storeId");
     loadStoreInfo(storeId);
+    loginCheck();
 }
 
 let loadStoreInfo = async(storeId)=>{
@@ -27,7 +28,7 @@ let loadStoreInfo = async(storeId)=>{
                                 <img src="${store.thumbnail_url}">
                             </div>
                             <div class="storeInfo">
-                                <h5>${store.name}</h5>
+                                <h5><b>${store.name}</b></h5>
                                 <span>${store.phone_number}</span>
                                 <span>${store.address}</span>
                                 <span>⭐ ${store.star}</span>
@@ -53,7 +54,7 @@ let loadStoreInfo = async(storeId)=>{
                            <img src="${menu.thumbnail_url}">
                        </div>
                        <div class="menuInfo">
-                           <h5>${menu.name}</h5>
+                           <h5><b>${menu.name}</b></h5>
                            <p id="price_${menu.id}">${menu.amount}원</p>
                            <p>❤ ${menu.like_count}</p>
                        </div>

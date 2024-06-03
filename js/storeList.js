@@ -31,7 +31,7 @@ let loadStoreList = async(category)=>{
                                 <img src="${store.thumbnail_url}">
                             </div>
                             <div>
-                                <h5>${store.name}</h5>
+                                <h5><b>${store.name}</b></h5>
                                 <span>최소주문 ${store.minimum_delivery_amount}원</span>
                             </div>  
                         </div>`
