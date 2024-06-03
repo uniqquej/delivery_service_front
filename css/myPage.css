@@ -1,6 +1,11 @@
-#responseBox{
+#myReviewListBox{
     height: 80%;
     overflow-y:auto;
+}
+
+#responseBox{
+    display: flex;
+    flex-direction: column;
 }
 
 .reviewBox{
