@@ -1,5 +1,9 @@
 const mainUrl = 'http://127.0.0.1:8080';
 
+window.onload = ()=>{
+    loginCheck();
+}
+
 const handleSignup = async()=>{
     let name = document.getElementById("inputName").value;
     let email = document.getElementById("inputEmail").value;
