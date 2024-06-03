@@ -1,0 +1,37 @@
+#orderDetail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderInfo{
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(243, 243, 243);
+}
+
+.orderStoreInfo{
+    margin-bottom: 20px;
+}
+
+.storeName {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.menuName {
+    font-size: 17px;
+    padding: 5px;
+}
+
+#orderTimeStamp{
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+
+    
+}

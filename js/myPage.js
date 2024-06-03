@@ -20,9 +20,10 @@ let loadCurrentOrderList = async()=>{
 
     resJson.body.forEach(res => {
         let orderDate = res.user_order_response.ordered_at
+        let userOrderResponse = res.user_order_response
         
         orderHtml += `<div class="orderInfo">
-                        <button class="btn btn-dark">주문 상세</button>
+                        <button class="btn btn-dark" onclick="orderDetail(${userOrderResponse.id})">주문 상세</button>
                         <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
                         <br>
                         <div class="orderStoreInfo">
@@ -92,5 +93,10 @@ let loadOrderList = async()=>{
     });
     
     orderListBox.innerHTML = orderHtml;
+}
+
+const orderDetail = (orderId)=>{
+    localStorage.setItem("orderId",orderId);
+    location.replace("orderDetail.html");
 }
 
