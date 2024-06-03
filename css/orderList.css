@@ -1,0 +1,44 @@
+.content > div {
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    margin-right: 5px;
+}
+
+#orderListBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.orderStoreInfo{
+    margin-bottom: 10px;
+}
+
+.orderInfo{
+    width: 100%;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.orderInfo > span{
+    float: right;
+}
+
+.storeName {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.menuName {
+    font-size: 17px;
+    padding: 5px;
+}
+

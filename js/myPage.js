@@ -1,11 +1,9 @@
-let mainUrl = "http://127.0.0.1:8080";
-
 window.onload = ()=>{
     loginCheck();
 }
 
-let loadCurrentOrderList = async()=>{
-    const res = await fetch(`${mainUrl}/api/user-order/current`,{
+const loadReviewList = async()=>{
+    const res = await fetch(`${mainUrl}/api/review/search`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
@@ -14,91 +12,21 @@ let loadCurrentOrderList = async()=>{
     })
 
     let resJson = await res.json();
+    console.log(resJson)
 
-    let orderListBox = document.getElementById("orderListBox");
-    let orderHtml=""
+    let responseBox = document.getElementById("responseBox");
+    let responseHtml = "";
 
-    resJson.body.forEach(res => {
-        let orderDate = res.user_order_response.ordered_at
-        let userOrderResponse = res.user_order_response
-        let storeResponse = res.store_response;
-
-        orderHtml += `<div class="orderInfo">
-                        <button class="btn btn-dark" onclick="orderDetail(${userOrderResponse.id})">주문 상세</button>
-                        <button class="btn btn-dark" onclick="location.replace('reviewRegister.html?id=${userOrderResponse.id}&store=${storeResponse.id}')">리뷰 작성</button>
-                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
-                        <br>
-                        <div class="orderStoreInfo">
-                            <span class="storeName"><b>${res.store_response.name}</b></span>
-                            <span>${res.store_response.phone_number}</span>
-                        </div>`;
-        res.user_order_menu_response_list.forEach(
-            menu=>{
-                orderHtml += `<div class="orderMenuInfo">
-                                <div>
-                                    <span class="menuName">${menu.menu_name}</span>
-                                    <span>x ${menu.count}</span>
-                                    <span>${menu.amount * menu.count} 원</span>
-                                </div>
-                            </div>`
-            })
-        orderHtml += `
-                        <br>
-                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
-                        </div>
-                        `   
-    });
-    
-    orderListBox.innerHTML = orderHtml;
-}
-
-let loadOrderList = async()=>{
-    const res = await fetch(`${mainUrl}/api/user-order/history`,{
-        headers:{
-            'content-type':'application/json',
-            'authorization':localStorage.getItem("access")
-        },
-        method: 'GET'
+    resJson.body.forEach(review=>{
+        responseHtml += `<div class="reviewBox">
+            <div class="reviewHeader">
+                <span class="star">평점 : ${"⭐".repeat(review.star)}</span>
+                <span>${moment(review.registered_at).format("YYYY-MM-DD")}</span>
+            </div>
+            <textarea class="form-control" disabled>${review.content}</textarea>
+            <a href="orderDetail.html?id=${review.user_order_id}">주문 내역으로 이동</a>
+            <button class="btn btn-dark" onclick='location.replace("reviewRegister.html?review=${review.id}")'>수정</button>
+        </div>`;
     })
-
-    let resJson = await res.json();
-
-    let orderListBox = document.getElementById("orderListBox");
-    let orderHtml=""
-
-    resJson.body.forEach(res => {
-        let orderDate = res.user_order_response.ordered_at
-        
-        orderHtml += `<div class="orderInfo">
-                        <button class="btn btn-dark">주문 상세</button>
-                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
-                        <br>
-                        <div class="orderStoreInfo">
-                            <span class="storeName"><b>${res.store_response.name}</b></span>
-                            <span>${res.store_response.phone_number}</span>
-                        </div>`;
-        res.user_order_menu_response_list.forEach(
-            menu=>{
-                orderHtml += `<div class="orderMenuInfo">
-                                <div>
-                                    <span class="menuName">${menu.menu_name}</span>
-                                    <span>x ${menu.count}</span>
-                                    <span>${menu.amount * menu.count} 원</span>
-                                </div>
-                            </div>`
-            })
-        orderHtml += `
-                        <br>
-                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
-                        </div>
-                        `   
-    });
-    
-    orderListBox.innerHTML = orderHtml;
+    responseBox.innerHTML = responseHtml;
 }
-
-const orderDetail = (orderId)=>{
-    localStorage.setItem("orderId",orderId);
-    location.replace("orderDetail.html");
-}
-

@@ -1,6 +1,7 @@
 #storeListBox {
     width: 95%;
     margin-top: 60px;
+    height: 80%;
     overflow-y: auto;
 }
 

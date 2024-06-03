@@ -1,13 +1,14 @@
-const mainUrl = "http://127.0.0.1:8080"
-
 window.onload = ()=>{
     loginCheck();
     loadOrderDetail();
 }
 
-const loadOrderDetail = async()=>{
-    let orderId = localStorage.getItem("orderId");
+const url = new URL(window.location.href);
+const urlParams = url.searchParams;
+const orderId = Number(urlParams.get('id'))
 
+const loadOrderDetail = async()=>{
+    
     const res = await fetch(`${mainUrl}/api/user-order/id/${orderId}`,{
         headers:{
             'content-type':'application/json',

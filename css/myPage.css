@@ -1,43 +1,28 @@
-.content > div {
-    display: flex;
-    justify-content: center;
+#responseBox{
+    height: 80%;
+    overflow-y:auto;
 }
 
-.btn{
-    margin-right: 5px;
-}
-
-#orderListBox{
+.reviewBox{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    margin-top: 10px;
-}
-
-.orderStoreInfo{
-    margin-bottom: 10px;
-}
-
-.orderInfo{
-    width: 100%;
     border-bottom: 1px solid gray;
+    margin-bottom: 5px;
     padding: 5px;
+}
+
+.reviewBox > a {
+    text-decoration: none;
+    color: black;
+    margin-left: auto;
     margin-top: 5px;
-    text-align: center;
 }
 
-.orderInfo > span{
-    float: right;
+.reviewHeader {
+    display: flex;
+    justify-content: flex-start;
 }
 
-.storeName {
-    font-size: 20px;
-    padding: 5px;
+.star{
+    margin-right: auto;
 }
-
-.menuName {
-    font-size: 17px;
-    padding: 5px;
-}
-
