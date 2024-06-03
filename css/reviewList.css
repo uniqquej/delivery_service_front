@@ -1,0 +1,18 @@
+#reviewListBox{
+    height: 93%;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.right{
+    margin-right: auto;
+}
+
+#backTag:hover{
+    cursor: pointer;
+}

@@ -13,7 +13,7 @@ const loginCheck = ()=>{
         <a href="myPage.html">마이페이지</a>
         `
 
-        userInfo.innerHTML = `<a onclick="logout()" style="color:white;">로그아웃</a>`
+        userInfo.innerHTML = `<a class="logout" onclick="logout()" style="color:white;">로그아웃</a>`
 
     } else {
         userInfo.innerHTML = `<a href="login.html">로그인</a>`

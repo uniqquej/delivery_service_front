@@ -28,10 +28,6 @@
     text-align: center;
 }
 
-.orderInfo > span{
-    float: right;
-}
-
 .storeName {
     font-size: 20px;
     padding: 5px;
@@ -41,4 +37,13 @@
     font-size: 17px;
     padding: 5px;
 }
+
+.btnBox {
+    margin-bottom: 10px;
+}
+
+.btnBox > button{
+    font-size: 13px;
+}
+
 

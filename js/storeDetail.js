@@ -1,5 +1,8 @@
+const url = new URL(window.location.href);
+const urlParams = url.searchParams;
+const storeId = Number(urlParams.get('store'))
+
 window.onload = ()=>{
-    let storeId = localStorage.getItem("storeId");
     loadStoreInfo(storeId);
     loginCheck();
 }
@@ -22,18 +25,18 @@ let loadStoreInfo = async(storeId)=>{
     let menuList = resJson.body.menu_list;
     
     let storeInfoHtml = `
-                            <div class="storeThumbnail">
-                                <img src="${store.thumbnail_url}">
-                            </div>
-                            <div class="storeInfo">
-                                <h5><b>${store.name}</b></h5>
-                                <span>${store.phone_number}</span>
-                                <span>${store.address}</span>
-                                <span>⭐ ${store.star}</span>
-                                <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_amount}</span> 원</span>
-                            </div>
-                            
-                            `
+                <div class="storeThumbnail">
+                    <img src="${store.thumbnail_url}">
+                </div>
+                <div class="storeInfo">
+                    <button class="btn btn-dark" id="storeReviewBtn" onclick="location.replace('reviewList.html?store=${storeId}')">리뷰</button>
+                    <h5><b>${store.name}</b></h5>
+                    <span>${store.phone_number}</span>
+                    <span>${store.address}</span>
+                    <span>⭐ ${store.star}</span>
+                    <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_amount}</span> 원</span>
+                </div>
+            `
     storeInfo.innerHTML = storeInfoHtml;
 
     let menuListHtml = '';

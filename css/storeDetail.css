@@ -50,11 +50,16 @@
 
 .storeInfo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
+    width: 55%;
 }
 
+#storeReviewBtn {
+    margin-left: auto;
+
+}
 .menuThumbnail{
     margin-right: 20px;
 }
