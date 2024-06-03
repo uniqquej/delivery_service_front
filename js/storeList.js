@@ -3,6 +3,7 @@ let mainUrl = "http://127.0.0.1:8080";
 window.onload = ()=>{
     let category = localStorage.getItem("category")
     loadStoreList(category)
+    loginCheck();
 }
 
 let loadStoreList = async(category)=>{

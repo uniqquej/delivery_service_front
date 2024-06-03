@@ -1,5 +1,9 @@
 let mainUrl = "http://127.0.0.1:8080";
 
+window.onload = ()=>{
+    loginCheck();
+}
+
 let loadCurrentOrderList = async()=>{
     const res = await fetch(`${mainUrl}/api/user-order/current`,{
         headers:{

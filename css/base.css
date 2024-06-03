@@ -26,12 +26,22 @@
 }
 
 .header>a{
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
     color: black;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .content{
     margin-top: 50px;
     width: 100%;
+}
+
+.header > div> a{
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    margin-left: 5px;
+    margin-right: 5px;
 }

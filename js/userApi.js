@@ -1,5 +1,9 @@
 const mainUrl = 'http://127.0.0.1:8080';
 
+window.onload = ()=>{
+    loginCheck();
+}
+
 const handleSignup = async()=>{
     let name = document.getElementById("inputName").value;
     let email = document.getElementById("inputEmail").value;
@@ -64,9 +68,15 @@ const handleLogin = async()=>{
     let resJson = await res.json();
     
     if(resJson.result.result_code==200){ 
-
+        const base64Url = resJson.body.access_token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = JSON.parse(decodeURIComponent(atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join('')));
+        
         localStorage.setItem("access",resJson.body.access_token);
         localStorage.setItem("refresh",resJson.body.refresh_token);
+        localStorage.setItem("role",jsonPayload.role);
         
         location.replace('home.html');
     }else {
