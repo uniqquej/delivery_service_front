@@ -18,6 +18,10 @@
     overflow-y: auto;
 }
 
+.wrap{
+    height: 70%;
+}
+
 .storeMenu{
     display: flex;
 
