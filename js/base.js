@@ -30,3 +30,9 @@ const payload = ()=>{
 
 }
 
+
+let clickCategory = (category)=>{
+    location.replace("storeList.html");
+    localStorage.setItem("category", category)
+}
+
