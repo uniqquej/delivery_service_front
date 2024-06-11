@@ -85,9 +85,9 @@ let getOrderTotalPrice = (obj)=> {
     var price = Number(priceText.slice(0,-1))
     var count = $("#count_" + menuId).val();
 
-    if(obj.dataset.oldCount > count) orderTotalPrice -= price*obj.dataset.oldCount;
-
     if(obj.checked==true) {
+        if(obj.dataset.oldCount<count) count -= obj.dataset.oldCount;
+
         orderTotalPrice += price*count;
     }
     else orderTotalPrice -= price*count;
@@ -98,9 +98,12 @@ let getOrderTotalPrice = (obj)=> {
 }
 
 let changeCount = (checkObj)=> {
-
+    var menuId = checkObj.value;
+    var count = $("#count_" + menuId).val();
+    
     if(checkObj.checked==true) {
         getOrderTotalPrice(checkObj)
+        checkObj.dataset.oldCount = count;
     };
 }
 
