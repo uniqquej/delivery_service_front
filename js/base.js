@@ -1,4 +1,5 @@
 let mainUrl = "http://127.0.0.1:8080";
+let adminUrl = "http://127.0.0.1:8081";
 
 const loginCheck = ()=>{
     let userInfo = document.getElementById("loginCheck");
@@ -39,4 +40,3 @@ let clickCategory = (category)=>{
     location.replace("storeList.html");
     localStorage.setItem("category", category)
 }
-

@@ -68,6 +68,8 @@ let loadOrderList = async()=>{
 
     resJson.body.forEach(res => {
         let orderDate = res.user_order_response.ordered_at
+        let userOrderResponse = res.user_order_response
+        let storeResponse = res.store_response;
         
         orderHtml += `<div class="orderInfo">
                         <div class="btnBox">
