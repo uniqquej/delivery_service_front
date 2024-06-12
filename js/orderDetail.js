@@ -37,15 +37,15 @@ const loadOrderDetail = async()=>{
             orderHtml += `<div class="orderMenuInfo">
                             <div>
                                 <span class="menuName">${menu.menu_name}</span>
-                                <span>x ${menu.count}</span>
-                                <span>${menu.amount * menu.count} 원</span>
+                                <span>x ${menu.count} &ensp;</span>
+                                <span>${menu.price * menu.count} 원</span>
                             </div>
                         </div>`
         })
 
     orderHtml += `
                     <br>
-                    <span class="totalAmountRes">총 합계 ${userOrderResponse.amount}</span>
+                    <span class="totalAmountRes">총 합계 &ensp;${userOrderResponse.total_price}원</span>
                     </div>
                     `   
     

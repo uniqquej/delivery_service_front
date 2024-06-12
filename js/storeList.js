@@ -30,7 +30,7 @@ let loadStoreList = async(category)=>{
                             </div>
                             <div>
                                 <h5><b>${store.name}</b></h5>
-                                <span>최소주문 ${store.minimum_delivery_amount}원</span>
+                                <span>최소주문 ${store.minimum_delivery_price}원</span>
                             </div>  
                         </div>`
     });

@@ -27,7 +27,6 @@ let loadCurrentOrderList = async()=>{
                             <button class="btn btn-dark" onclick="location.replace('orderDetail.html?id=${userOrderResponse.id}')">주문 상세</button>
                         </div>
                         <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
-                        <br>
                         <div class="orderStoreInfo">
                             <span class="storeName"><b>${res.store_response.name}</b></span>
                             <span>${res.store_response.phone_number}</span>
@@ -37,14 +36,14 @@ let loadCurrentOrderList = async()=>{
                 orderHtml += `<div class="orderMenuInfo">
                                 <div>
                                     <span class="menuName">${menu.menu_name}</span>
-                                    <span>x ${menu.count}</span>
-                                    <span>${menu.amount * menu.count} 원</span>
+                                    <span>x ${menu.count} &ensp;</span>
+                                    <span>${menu.price * menu.count} 원</span>
                                 </div>
                             </div>`
             })
         orderHtml += `
                         <br>
-                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
+                        <span class="totalAmountRes">총 합계&ensp; ${res.user_order_response.total_price}원</span>
                         </div>
                         `   
     });
@@ -88,13 +87,13 @@ let loadOrderList = async()=>{
                                 <div>
                                     <span class="menuName">${menu.menu_name}</span>
                                     <span>x ${menu.count}</span>
-                                    <span>${menu.amount * menu.count} 원</span>
+                                    <span>${menu.price * menu.count} 원</span>
                                 </div>
                             </div>`
             })
         orderHtml += `
                         <br>
-                        <span class="totalAmountRes">총 합계 ${res.user_order_response.amount}</span>
+                        <span class="totalAmountRes">총 합계 ${res.user_order_response.totalPrice}</span>
                         </div>
                         `   
     });

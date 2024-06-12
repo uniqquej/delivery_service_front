@@ -1,3 +1,7 @@
+.content{
+    height: 83%;
+}
+
 .content > div {
     display: flex;
     justify-content: center;
@@ -11,30 +15,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 95%;
+    height: 100%;
     overflow-y: auto;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .orderStoreInfo{
+    margin-top: 7px;
     margin-bottom: 10px;
 }
 
 .orderInfo{
-    width: 100%;
+    width: 90%;
     border-bottom: 1px solid gray;
     padding: 5px;
-    margin-top: 5px;
     text-align: center;
+    font-size: 14px;
 }
 
 .storeName {
-    font-size: 20px;
+    font-size: 17px;
     padding: 5px;
 }
 
 .menuName {
-    font-size: 17px;
+    font-size: 15px;
     padding: 5px;
 }
 

@@ -35,7 +35,7 @@ let loadStoreInfo = async(storeId)=>{
                     <span>${store.phone_number}</span>
                     <span>${store.address}</span>
                     <span>⭐ ${store.star}</span>
-                    <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_amount}</span> 원</span>
+                    <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_price}</span> 원</span>
                 </div>
             `
     storeInfo.innerHTML = storeInfoHtml;
@@ -51,6 +51,8 @@ let loadStoreInfo = async(storeId)=>{
         if(menu.thumbnail_url.startsWith("/images/menu/")){
             menu.thumbnail_url = imgUrl+menu.thumbnail_url;
         }
+
+        console.log(menu)
         
         menuListHtml += `
                    <div class="storeMenu" >
@@ -62,7 +64,7 @@ let loadStoreInfo = async(storeId)=>{
                        </div>
                        <div class="menuInfo">
                            <h5><b>${menu.name}</b></h5>
-                           <p id="price_${menu.id}">${menu.amount}원</p>
+                           <p id="price_${menu.id}">${menu.price}원</p>
                            <p>❤ ${menu.like_count}</p>
                        </div>
                        <div class="countBox">
@@ -110,7 +112,6 @@ let changeCount = (checkObj)=> {
 let orderMenu = async()=>{
     var orderTotalPrice = Number($("#totalPrice").text());
     var minumumAmount = Number($("#minimumDeliveryAmount").text());
-    console.log("minimum",orderTotalPrice,"   ", minumumAmount)
 
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
     var checkValues = [];
