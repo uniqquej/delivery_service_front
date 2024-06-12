@@ -1,3 +1,8 @@
+
+const url = new URL(window.location.href);
+const urlParams = url.searchParams;
+const search = urlParams.get('search');
+    
 window.onload = ()=>{
     let category = localStorage.getItem("category")
     loadStoreList(category)
@@ -5,14 +10,19 @@ window.onload = ()=>{
 }
 
 let loadStoreList = async(category)=>{
-    
-    const res = await fetch(`${mainUrl}/api/store/search?category=${category}`,{
+    console.log(search)
+    let resUrl = `${mainUrl}/api/store/search?category=${category}`
+    if(search != null){
+        resUrl = `${mainUrl}/api/store/search?name=${search}`
+    }
+    const res = await fetch(resUrl,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
         },
         method: 'GET'
     })
+    
 
     let resJson = await res.json();
     console.log(resJson);

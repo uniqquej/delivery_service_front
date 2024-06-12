@@ -22,6 +22,7 @@ let loadStoreInfo = async(storeId)=>{
     let menuListBox = document.getElementById("menuListBox");
 
     let resJson = await res.json();
+    console.log(resJson)
     let store = resJson.body.store;
     let menuList = resJson.body.menu_list;
     

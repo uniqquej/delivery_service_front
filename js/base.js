@@ -40,3 +40,8 @@ let clickCategory = (category)=>{
     location.replace("storeList.html");
     localStorage.setItem("category", category)
 }
+
+let clickSearch = ()=>{
+    let search = document.getElementById("searchInput").value;
+    location.replace(`storeList.html?search=${search}`);
+}

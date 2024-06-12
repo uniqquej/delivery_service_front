@@ -1,5 +1,6 @@
 window.onload = ()=>{
     loginCheck();
+    loadMyInfo();
 }
 
 const loadReviewList = async()=>{

@@ -1,8 +1,13 @@
 .btnContainer{
-    margin-top: 60px;
+    margin-top: 20px;
     width: 100%;
     height: 70%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+
+.searchBox {
+    margin-top: 65px;
+    display: flex;
 }
