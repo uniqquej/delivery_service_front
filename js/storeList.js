@@ -40,6 +40,7 @@ let loadStoreList = async(category)=>{
                             </div>
                             <div>
                                 <h5><b>${store.name}</b></h5>
+                                <span>⭐ ${parseFloat(store.star).toFixed(2)} </span><br>
                                 <span>최소주문 ${store.minimum_delivery_price}원</span>
                             </div>  
                         </div>`

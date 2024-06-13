@@ -35,7 +35,7 @@ let loadStoreInfo = async(storeId)=>{
                     <h5><b>${store.name}</b></h5>
                     <span>${store.phone_number}</span>
                     <span>${store.address}</span>
-                    <span>⭐ ${store.star}</span>
+                    <span>⭐ ${parseFloat(store.star).toFixed(2)}</span>
                     <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_price}</span> 원</span>
                 </div>
             `
