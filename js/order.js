@@ -92,3 +92,7 @@ const order = async()=>{
         location.replace("home.html");
     }
 }
+
+const canceledOrder = () =>{
+    if(confirm("주문을 취소하겠습니까?")) window.location.href = `storeDetail.html?store=${storeId}`;
+} 
