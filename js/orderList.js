@@ -69,11 +69,16 @@ let loadOrderList = async()=>{
         let orderDate = res.user_order_response.ordered_at
         let userOrderResponse = res.user_order_response
         let storeResponse = res.store_response;
+        let hasReview = res.user_order_response.has_review
+
+        let reviewBtn = `<button class="btn btn-dark" onclick="location.replace('reviewRegister.html?id=${userOrderResponse.id}&store=${storeResponse.id}')">리뷰 작성</button>`
+
+        if(hasReview) reviewBtn = `<button class="btn btn-secondary" disabled>리뷰 완료</button>`
         
         orderHtml += `<div class="orderInfo">
                         <div class="btnBox">
                             <button class="btn btn-dark" onclick="location.replace('orderDetail.html?id=${userOrderResponse.id}')">주문 상세</button>
-                            <button class="btn btn-dark" onclick="location.replace('reviewRegister.html?id=${userOrderResponse.id}&store=${storeResponse.id}')">리뷰 작성</button>
+                            ${reviewBtn}
                         </div>
                         <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
                         <br>

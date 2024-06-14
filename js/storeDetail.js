@@ -110,7 +110,7 @@ let changeCount = (checkObj)=> {
     };
 }
 
-let orderMenu = async()=>{
+let orderCheckMenu = async()=>{
     var orderTotalPrice = Number($("#totalPrice").text());
     var minumumAmount = Number($("#minimumDeliveryAmount").text());
 
@@ -128,32 +128,8 @@ let orderMenu = async()=>{
     else if (orderTotalPrice < minumumAmount) alert("최소 금액을 맞춰주세요");
 
     else{
-        let data = JSON.stringify({
-            'result':{
-                "result_code": 200,
-                "result_message": "success",
-                "result_description": "order success"
-            },
-            'body':{
-                "store_menu_id_list" : checkValues,
-                "count_list": counts,
-                "store_id": storeId
-            }
-        })
-    
-        const res = await fetch(`${mainUrl}/api/user-order`,{
-            headers:{
-                'content-type':'application/json',
-                'authorization':localStorage.getItem("access")
-            },
-            method: 'POST',
-            body : data
-        })
-        let resJson = await res.json();
-        if(resJson.result.result_code==200) {
-            alert("주문 완료");
-            location.replace("home.html");
-        }
+
+        window.location.href = `order.html?menus=${checkValues.join(',')}&counts=${counts.join(',')}`;
     }
 
     

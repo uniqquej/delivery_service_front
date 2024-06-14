@@ -38,10 +38,6 @@
     padding: 5px;
 }
 
-.btnBox {
-    margin-bottom: 10px;
-}
-
 .btnBox > button{
     font-size: 13px;
 }

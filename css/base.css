@@ -74,3 +74,8 @@
 .logout:hover{
     cursor: pointer;
 }
+
+.btnBox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
