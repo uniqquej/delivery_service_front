@@ -5,6 +5,15 @@ const loginCheck = ()=>{
     let userInfo = document.getElementById("loginCheck");
     let roleInfo = document.getElementById("roleCheck");
     
+    const currentTime = new Date().getTime() / 1000;
+    const expiredAt = localStorage.getItem("expiredAt");
+
+    if (expiredAt && currentTime > expiredAt) {
+        console.log("xxxxxxxxx")
+        alert("로그인이 만료되었습니다.");
+        logout();
+    }
+    console.log("유효함")
 
     if (localStorage.getItem("access") !== null) {
         if(localStorage.getItem("role")=="ADMIN")
@@ -44,4 +53,8 @@ let clickCategory = (category)=>{
 let clickSearch = ()=>{
     let search = document.getElementById("searchInput").value;
     location.replace(`storeList.html?search=${search}`);
+}
+
+const goBack = ()=>{
+    window.history.back();
 }

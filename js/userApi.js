@@ -75,6 +75,7 @@ const handleLogin = async()=>{
         localStorage.setItem("access",resJson.body.access_token);
         localStorage.setItem("refresh",resJson.body.refresh_token);
         localStorage.setItem("role",jsonPayload.role);
+        localStorage.setItem("expiredAt", resJson.body.expired_at);
         
         location.replace('home.html');
     }else {

@@ -11,9 +11,9 @@ window.onload = ()=>{
 
 let loadStoreList = async(category)=>{
     console.log(search)
-    let resUrl = `${mainUrl}/api/store/search?category=${category}`
+    let resUrl = `${mainUrl}/open-api/store/search?category=${category}`
     if(search != null){
-        resUrl = `${mainUrl}/api/store/search?name=${search}`
+        resUrl = `${mainUrl}/open-api/store/search?name=${search}`
     }
     const res = await fetch(resUrl,{
         headers:{

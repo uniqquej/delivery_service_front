@@ -4,6 +4,13 @@ window.onload = ()=>{
 }
 
 const loadReviewList = async()=>{
+    const myInfoBtn = document.getElementById("myInfoBtn");
+    const myReviewBtn = document.getElementById("myReviewBtn");
+
+    if(myInfoBtn.classList.contains("active")) myInfoBtn.classList.remove("active");
+
+    if(!myReviewBtn.classList.contains("active")) myReviewBtn.classList.add("active");
+
     const res = await fetch(`${mainUrl}/api/review/search`,{
         headers:{
             'content-type':'application/json',
@@ -36,6 +43,13 @@ const loadReviewList = async()=>{
 }
 
 const loadMyInfo = async()=>{
+
+    const myInfoBtn = document.getElementById("myInfoBtn");
+    const myReviewBtn = document.getElementById("myReviewBtn");
+
+    if(myReviewBtn.classList.contains("active")) myReviewBtn.classList.remove("active");
+
+    if(!myInfoBtn.classList.contains("active")) myInfoBtn.classList.add("active");
 
     const res = await fetch(`${mainUrl}/api/user/me`,{
         headers:{

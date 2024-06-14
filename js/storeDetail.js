@@ -10,7 +10,7 @@ window.onload = ()=>{
 
 let loadStoreInfo = async(storeId)=>{
     
-    const res = await fetch(`${mainUrl}/api/store/detail?storeId=${storeId}`,{
+    const res = await fetch(`${mainUrl}/open-api/store/detail?storeId=${storeId}`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")

@@ -4,6 +4,14 @@ window.onload = ()=>{
 }
 
 let loadCurrentOrderList = async()=>{
+    const orderBtn = document.getElementById("orderBtn");
+    const completeOrderBtn = document.getElementById("completeOrderBtn");
+
+    if(completeOrderBtn.classList.contains("active")) completeOrderBtn.classList.remove("active");
+
+    if(!orderBtn.classList.contains("active")) orderBtn.classList.add("active");
+
+
     const res = await fetch(`${mainUrl}/api/user-order/current`,{
         headers:{
             'content-type':'application/json',
@@ -52,6 +60,14 @@ let loadCurrentOrderList = async()=>{
 }
 
 let loadOrderList = async()=>{
+    const orderBtn = document.getElementById("orderBtn");
+    const completeOrderBtn = document.getElementById("completeOrderBtn");
+
+    if(orderBtn.classList.contains("active")) orderBtn.classList.remove("active");
+
+    if(!completeOrderBtn.classList.contains("active")) completeOrderBtn.classList.add("active");
+
+
     const res = await fetch(`${mainUrl}/api/user-order/history`,{
         headers:{
             'content-type':'application/json',
