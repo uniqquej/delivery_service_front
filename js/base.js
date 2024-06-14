@@ -4,16 +4,6 @@ let adminUrl = "http://127.0.0.1:8081";
 const loginCheck = ()=>{
     let userInfo = document.getElementById("loginCheck");
     let roleInfo = document.getElementById("roleCheck");
-    
-    const currentTime = new Date().getTime() / 1000;
-    const expiredAt = localStorage.getItem("expiredAt");
-
-    if (expiredAt && currentTime > expiredAt) {
-        console.log("xxxxxxxxx")
-        alert("로그인이 만료되었습니다.");
-        logout();
-    }
-    console.log("유효함")
 
     if (localStorage.getItem("access") !== null) {
         if(localStorage.getItem("role")=="ADMIN")
@@ -29,6 +19,25 @@ const loginCheck = ()=>{
         userInfo.innerHTML = `<a href="login.html">로그인</a>`
     }
 
+}
+
+const tokenCheck = ()=>{
+    const currentTime = new Date().getTime() / 1000;
+    const expiredAt = localStorage.getItem("expiredAt");
+    
+    if(localStorage.getItem("access") == null) {
+        alert("로그인이 필요합니다.");
+        window.location.href="login.html"
+        return false;
+    }
+    
+    
+    if (expiredAt && currentTime > expiredAt) {
+        alert("로그인이 만료되었습니다.");
+        logout();
+        return false;
+    }
+    return true;
 }
 
 const logout = ()=>{

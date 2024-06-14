@@ -23,6 +23,7 @@ let loadStoreInfo = async(storeId)=>{
 
     let resJson = await res.json();
     console.log(resJson)
+
     let store = resJson.body.store;
     let menuList = resJson.body.menu_list;
     
@@ -31,7 +32,7 @@ let loadStoreInfo = async(storeId)=>{
                     <img src="${store.thumbnail_url}">
                 </div>
                 <div class="storeInfo">
-                    <button class="btn btn-dark" id="storeReviewBtn" onclick="location.replace('reviewList.html?store=${storeId}')">리뷰</button>
+                    <button class="btn btn-dark" id="storeReviewBtn" onclick="location.replace('reviewList.html?store=${storeId}')">리뷰확인</button>
                     <h5><b>${store.name}</b></h5>
                     <span>${store.phone_number}</span>
                     <span>${store.address}</span>
@@ -111,26 +112,34 @@ let changeCount = (checkObj)=> {
 }
 
 let orderCheckMenu = async()=>{
-    var orderTotalPrice = Number($("#totalPrice").text());
-    var minumumAmount = Number($("#minimumDeliveryAmount").text());
-
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    var checkValues = [];
-    var counts = [];
-    
-    checkboxes.forEach(check=>{
-        checkValues.push(check.value);
-        counts.push($("#count_"+check.value).val());
-    });
-    
-    if(checkValues.length==0) alert("선택된 메뉴가 없습니다.");
-
-    else if (orderTotalPrice < minumumAmount) alert("최소 금액을 맞춰주세요");
-
+    if(!tokenCheck()) {
+        alert("로그인이 필요합니다.");
+        window.location.href = "login.html";
+    } 
     else{
+        var orderTotalPrice = Number($("#totalPrice").text());
+        var minumumAmount = Number($("#minimumDeliveryAmount").text());
 
-        window.location.href = `order.html?menus=${checkValues.join(',')}&counts=${counts.join(',')}`;
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        var checkValues = [];
+        var counts = [];
+        
+        checkboxes.forEach(check=>{
+            checkValues.push(check.value);
+            counts.push($("#count_"+check.value).val());
+        });
+        
+        if(checkValues.length==0) alert("선택된 메뉴가 없습니다.");
+
+        else if (orderTotalPrice < minumumAmount) alert("최소 금액을 맞춰주세요");
+
+        else{
+
+            window.location.href = `order.html?menus=${checkValues.join(',')}&counts=${counts.join(',')}`;
+        }
+
     }
+    
 
     
 }

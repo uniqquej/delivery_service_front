@@ -21,6 +21,12 @@ const getUserAddress = async ()=>{
     let resJson = await res.json();
     console.log(resJson);
 
+    if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
+        alert("로그인을 해주세요");
+        window.location.href="login.html";
+    }
+    
+
     const addressInput = document.getElementById("addressInput");
     addressInput.value = resJson.body.address;
 }

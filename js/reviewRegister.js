@@ -6,6 +6,7 @@ const storeId = Number(urlParams.get('store'))
 const reviewId = urlParams.get('review')
 
 window.onload = ()=>{
+    tokenCheck();
     loginCheck();
     if(reviewId != null) loadReview();
 }
@@ -30,6 +31,11 @@ const loadReview = async()=>{
     })
 
     let resJson = await res.json();
+
+    if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
+        alert("로그인이 필요합니다.");
+        window.location.href="login.html";
+    }
     
     let reviewStar = document.getElementById("reviewStar")
     let reviewContent = document.getElementById("reviewContent")

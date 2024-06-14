@@ -59,6 +59,10 @@
 
 #storeReviewBtn {
     margin-left: auto;
+    font-size: 15px;
+    background-color: inherit;
+    color: black;
+    border: none;
 
 }
 .menuThumbnail{
