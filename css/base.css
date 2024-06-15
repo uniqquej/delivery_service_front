@@ -85,3 +85,7 @@
     border: none;
     color: black;
 }
+
+.likeBtn,.linkBtn {
+    cursor: pointer;
+}

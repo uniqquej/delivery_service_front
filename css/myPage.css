@@ -6,6 +6,8 @@
 #responseBox{
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
 }
 
 .reviewBox{
@@ -30,4 +32,26 @@
 
 .star{
     margin-right: auto;
+}
+
+.storeInfo {
+    margin-top: 5px;
+    padding: 5px;
+    border-bottom : 1px solid gray;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+.storeThumbnail{
+    margin-right: 20px;
+}
+
+.storeThumbnail > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  
 }

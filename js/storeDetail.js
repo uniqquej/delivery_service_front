@@ -1,6 +1,7 @@
 const url = new URL(window.location.href);
 const urlParams = url.searchParams;
 const storeId = Number(urlParams.get('store'))
+const category = urlParams.get("category");
 const imgUrl = "http://localhost:8081";
 
 window.onload = ()=>{
@@ -8,9 +9,12 @@ window.onload = ()=>{
     loginCheck();
 }
 
+const storeDetailBackBtn = document.getElementById('storeDetailBackBtn');
+storeDetailBackBtn.addEventListener("click",e=>window.location.href = `storeList.html?category=${category}`);
+
 let loadStoreInfo = async(storeId)=>{
     
-    const res = await fetch(`${mainUrl}/open-api/store/detail?storeId=${storeId}`,{
+    const res = await fetch(`${mainUrl}/api/store/detail?storeId=${storeId}`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
@@ -22,10 +26,14 @@ let loadStoreInfo = async(storeId)=>{
     let menuListBox = document.getElementById("menuListBox");
 
     let resJson = await res.json();
-    console.log(resJson)
 
     let store = resJson.body.store;
     let menuList = resJson.body.menu_list;
+
+    let like = resJson.body.liked_store;
+    let likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">🖤&nbsp&nbsp ${store.likes}</span>`
+
+    if(like)likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">💖&nbsp&nbsp ${store.likes}</span>`
     
     let storeInfoHtml = `
                 <div class="storeThumbnail">
@@ -37,6 +45,7 @@ let loadStoreInfo = async(storeId)=>{
                     <span>${store.phone_number}</span>
                     <span>${store.address}</span>
                     <span>⭐ ${parseFloat(store.star).toFixed(2)}</span>
+                    ${likeElement}
                     <span ><b>최소주문</b> <span id="minimumDeliveryAmount">${store.minimum_delivery_price}</span> 원</span>
                 </div>
             `
@@ -67,7 +76,6 @@ let loadStoreInfo = async(storeId)=>{
                        <div class="menuInfo">
                            <h5><b>${menu.name}</b></h5>
                            <p id="price_${menu.id}">${menu.price}원</p>
-                           <p>❤ ${menu.like_count}</p>
                        </div>
                        <div class="countBox">
                             <input type="number" id="count_${menu.id}" value=1 min="1"
@@ -139,7 +147,5 @@ let orderCheckMenu = async()=>{
         }
 
     }
-    
-
     
 }

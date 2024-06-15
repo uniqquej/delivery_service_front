@@ -55,8 +55,7 @@ const payload = ()=>{
 }
 
 let clickCategory = (category)=>{
-    location.replace("storeList.html");
-    localStorage.setItem("category", category)
+    window.location.href = `storeList.html?category=${category}`;
 }
 
 let clickSearch = ()=>{
@@ -66,4 +65,20 @@ let clickSearch = ()=>{
 
 const goBack = ()=>{
     window.history.back();
+}
+
+
+const likeStore = async(storeId)=>{
+    const res = await fetch(`${mainUrl}/api/like-store/id/${storeId}`,{
+        headers:{
+            'content-type':'application/json',
+            'authorization':localStorage.getItem("access")
+        },
+        method: 'POST'
+    })
+
+    let resJson = await res.json();
+    console.log(resJson)
+
+    location.reload();
 }

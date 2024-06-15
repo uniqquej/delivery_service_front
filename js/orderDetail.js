@@ -18,6 +18,7 @@ const loadOrderDetail = async()=>{
     })
 
     let resJson = await res.json();
+    console.log(resJson)
     
     if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
         alert("로그인이 필요합니다.");
@@ -35,7 +36,12 @@ const loadOrderDetail = async()=>{
                     <div class="orderStoreInfo">
                         <span class="storeName"><b>${storeResponse.name}</b></span>
                         <span>${storeResponse.phone_number}</span>
-                    </div>`
+                    </div>
+                    <div class="addressInfo">
+                        <span><b>배달주소</b></span><br>
+                        <span>${userOrderResponse.address}</span>
+                    </div>
+                    `
     menuResponse.forEach(
         menu=>{
             orderHtml += `<div class="orderMenuInfo">
