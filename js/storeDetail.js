@@ -62,8 +62,6 @@ let loadStoreInfo = async(storeId)=>{
         if(menu.thumbnail_url.startsWith("/images/menu/")){
             menu.thumbnail_url = imgUrl+menu.thumbnail_url;
         }
-
-        console.log(menu)
         
         menuListHtml += `
                    <div class="storeMenu" >

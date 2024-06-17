@@ -18,7 +18,6 @@ const loadOrderDetail = async()=>{
     })
 
     let resJson = await res.json();
-    console.log(resJson)
     
     if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
         alert("로그인이 필요합니다.");

@@ -10,7 +10,6 @@ window.onload = ()=>{
 }
 
 let loadStoreList = async(category)=>{
-    console.log(search)
     let resUrl = `${mainUrl}/open-api/store/search?category=${category}`
     if(search != null){
         resUrl = `${mainUrl}/open-api/store/search?name=${search}`
@@ -25,7 +24,6 @@ let loadStoreList = async(category)=>{
     
 
     let resJson = await res.json();
-    console.log(resJson);
 
     let storeListBox = document.getElementById("storeListBox");
     let storeHtml = '';

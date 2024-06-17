@@ -78,7 +78,6 @@ const likeStore = async(storeId)=>{
     })
 
     let resJson = await res.json();
-    console.log(resJson)
-
+   
     location.reload();
 }

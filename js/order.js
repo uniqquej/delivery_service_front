@@ -19,7 +19,6 @@ const getUserAddress = async ()=>{
         method: 'GET'
     })
     let resJson = await res.json();
-    console.log(resJson);
 
     if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
         alert("로그인을 해주세요");
@@ -43,7 +42,6 @@ const loadMenu = async ()=>{
     storeId = resJson.body[0].store_id;
 
     let totalPrice = 0;
-    console.log(resJson);
 
     const orderCheck = document.getElementById("orderCheck");
     let orderInfoHtml = ``;
@@ -67,7 +65,6 @@ const order = async()=>{
     let countList = counts.map(count=> parseInt(count));
     let menuList = menuIds.split(',').map(menuId=> parseInt(menuId));
     const address = document.getElementById("addressInput").value;
-    console.log(address)
 
     let data = JSON.stringify({
         'result':{

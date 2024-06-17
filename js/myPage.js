@@ -97,8 +97,6 @@ const loadMyInfo = async()=>{
 
 const loadUpdatePage = (name, email, address)=>{
 
-    console.log(address)
-
     let responseBox = document.getElementById("responseBox");
     let responseHtml = "";
 
