@@ -26,7 +26,13 @@ let loadStoreInfo = async(storeId)=>{
     let menuListBox = document.getElementById("menuListBox");
 
     let resJson = await res.json();
-
+    let status = resJson.result.result_code;
+    
+    if(2000<=status & status <=2004) {
+        alert("로그인이 필요합니다.")
+        location.replace("login.html");
+    }
+    
     let store = resJson.body.store;
     let menuList = resJson.body.menu_list;
 

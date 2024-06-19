@@ -32,7 +32,7 @@ const loadReviewList = async()=>{
             <div class="reviewBox">
                 <div class="reviewHeader">
                     <span class="star">평점 : ${"⭐".repeat(review.star)}</span>
-                    <span>${moment(review.registered_at).format("YYYY-MM-DD")}</span>
+                    <span>${moment(review.registered_at).format("YYYY-MM-DD HH:mm")}</span>
                 </div>
                 <textarea class="form-control" disabled>${review.content}</textarea>
                 <a href="orderDetail.html?id=${review.user_order_id}">주문 내역으로 이동</a>

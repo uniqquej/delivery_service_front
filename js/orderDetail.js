@@ -64,20 +64,20 @@ const loadOrderDetail = async()=>{
     let orderTimeHtml = `
                         <span><b>주문 현황</b></span>
                         <br>
-                        <span>주문 : ${moment(userOrderResponse.ordered_at).format('YYYY-MM-DD hh:mm')}</span><br>
+                        <span>주문 : ${moment(userOrderResponse.ordered_at).format('YYYY-MM-DD HH:mm')}</span><br>
                         `
 
     if(userOrderResponse.accepted_at != null)
-        orderTimeHtml += `<span>수락 : ${moment(userOrderResponse.accepted_at).format('YYYY-MM-DD hh:mm')}</span><br>`
+        orderTimeHtml += `<span>수락 : ${moment(userOrderResponse.accepted_at).format('YYYY-MM-DD HH:mm')}</span><br>`
 
     if(userOrderResponse.cooking_started_at != null)
-        orderTimeHtml += `<span>조리시작 : ${moment(userOrderResponse.cooking_started_at).format('YYYY-MM-DD hh:mm')}</span><br>`
+        orderTimeHtml += `<span>조리시작 : ${moment(userOrderResponse.cooking_started_at).format('YYYY-MM-DD HH:mm')}</span><br>`
 
     if(userOrderResponse.delivery_started_at != null)
-        orderTimeHtml += `<span>배달시작 : ${moment(userOrderResponse.delivery_started_at).format('YYYY-MM-DD hh:mm')}</span><br>`
+        orderTimeHtml += `<span>배달시작 : ${moment(userOrderResponse.delivery_started_at).format('YYYY-MM-DD HH:mm')}</span><br>`
 
     if(userOrderResponse.received_at != null)
-        orderTimeHtml += `<span>배달완료 : ${moment(userOrderResponse.received_at).format('YYYY-MM-DD hh:mm')}</span><br>`
+        orderTimeHtml += `<span>배달완료 : ${moment(userOrderResponse.received_at).format('YYYY-MM-DD HH:mm')}</span><br>`
     
     orderTimeStamp.innerHTML = orderTimeHtml;
 }

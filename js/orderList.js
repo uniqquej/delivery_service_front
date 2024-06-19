@@ -39,7 +39,7 @@ let loadCurrentOrderList = async()=>{
                         <div class="btnBox">
                             <button class="btn btn-dark" onclick="location.replace('orderDetail.html?id=${userOrderResponse.id}')">주문 상세</button>
                         </div>
-                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
+                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD HH:mm')}</span><br>
                         <div class="orderStoreInfo">
                             <span class="storeName"><b>${res.store_response.name}</b></span>
                             <span>${res.store_response.phone_number}</span>
@@ -56,7 +56,7 @@ let loadCurrentOrderList = async()=>{
             })
         orderHtml += `
                         <br>
-                        <span class="totalAmountRes">총 합계&ensp; ${res.user_order_response.total_price}원</span>
+                        <span class="totalAmountRes">총 합계&ensp; ${userOrderResponse.total_price}원</span>
                         </div>
                         `   
     });
@@ -101,7 +101,7 @@ let loadOrderList = async()=>{
                             <button class="btn btn-dark" onclick="location.replace('orderDetail.html?id=${userOrderResponse.id}')">주문 상세</button>
                             ${reviewBtn}
                         </div>
-                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD hh:mm')}</span><br>
+                        <span>주문 시간: ${moment(orderDate).format('YYYY-MM-DD HH:mm')}</span><br>
                         <br>
                         <div class="orderStoreInfo">
                             <span class="storeName"><b>${res.store_response.name}</b></span>
@@ -119,7 +119,7 @@ let loadOrderList = async()=>{
             })
         orderHtml += `
                         <br>
-                        <span class="totalAmountRes">총 합계 ${res.user_order_response.totalPrice}</span>
+                        <span class="totalAmountRes">총 합계 ${userOrderResponse.total_price}</span>
                         </div>
                         `   
     });

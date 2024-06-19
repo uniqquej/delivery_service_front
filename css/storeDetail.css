@@ -8,6 +8,7 @@
     display: flex;
     padding: 4px;
     box-shadow: 2px 2px 2px 2px rgb(232, 229, 229);
+    font-size: 14px;
 }
 
 #menuListBox{
@@ -15,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80%;
+    height: 70%;
     overflow-y: auto;
 }
 
@@ -43,8 +44,8 @@
 }
 
 .storeThumbnail > img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
   
 }

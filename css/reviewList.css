@@ -1,3 +1,6 @@
+.content{
+    height: 86%;
+}
 #reviewListBox{
     height: 93%;
     overflow-y: auto;
