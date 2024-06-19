@@ -10,7 +10,7 @@ window.onload = ()=>{
 }
 
 const storeDetailBackBtn = document.getElementById('storeDetailBackBtn');
-storeDetailBackBtn.addEventListener("click",e=>window.location.href = `storeList.html?category=${category}`);
+
 
 let loadStoreInfo = async(storeId)=>{
     
@@ -34,6 +34,7 @@ let loadStoreInfo = async(storeId)=>{
     let likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">🖤&nbsp&nbsp ${store.likes}</span>`
 
     if(like)likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">💖&nbsp&nbsp ${store.likes}</span>`
+    storeDetailBackBtn.addEventListener("click",e=>window.location.href = `storeList.html?category=${store.category}`);
     
     let storeInfoHtml = `
                 <div class="storeThumbnail">

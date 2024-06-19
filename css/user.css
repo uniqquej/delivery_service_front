@@ -53,3 +53,9 @@ span{
 .userInput{
     width: 70%;
 }
+
+.errorMsg{
+    font-size: 15px;
+    color: rgb(221, 74, 74);
+    padding: 2px;
+}

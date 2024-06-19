@@ -15,18 +15,30 @@
       <label for="inputName" class="col-form-label">name</label>
       <input type="text" id="inputName" class="form-control" aria-describedby="passwordHelpInline">       
     </div>
+
+    <div><span class="errorMsg" id="nameError"></span></div>
+    
     <div class="userInput">
       <label for="inputEmail" class="col-form-label">email</label>
       <input type="email" id="inputEmail" class="form-control" aria-describedby="passwordHelpInline">
     </div>
+    
+    <div><span class="errorMsg" id="emailError"></span></div>
+    
     <div class="userInput">
       <label for="inputPassword" class="col-form-label">Password</label>
       <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline">
     </div>
+
+    <div><span class="errorMsg" id="passwordError"></span></div>
+    
     <div class="userInput">
       <label for="inputAddress" class="col-form-label">address</label>
       <input type="text" id="inputAddress" class="form-control" aria-describedby="passwordHelpInline">
     </div>
+    
+    <div><span class="errorMsg" id="addressError"></span></div>
+    
     <div>
       <button class="btn btn-secondary" type="button" onclick="location.replace('login.html')">login</button>
       <button class="btn btn-dark" type="button" onclick="handleSignup()">signup</button>
@@ -34,6 +46,7 @@
     </div>
   </div>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/userApi.js"></script>
     <script src="js/base.js"></script>

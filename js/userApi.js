@@ -32,11 +32,38 @@ const handleSignup = async()=>{
     })
 
     let resJson = await res.json();
-    if(resJson.result.result_code==200) location.replace('login.html');
-    else {
-        let errorMessages = resJson.result.result_description
-        alert(errorMessages.replaceAll(',','\n'));
+    if(resJson.result.result_code==200){
+        if(resJson.body.id != null)
+            location.replace('login.html');
+        else
+            $("#emailError").html(resJson.body.email);      
+    }else{
+        errorMessages = resJson.result.result_description.split(",")
+
+        let addressError = "";
+        let passwordError = "";
+        let nameError = "";
+        let emailError = "";
+
+        errorMessages.forEach(error => {
+            if (error.includes("주소"))
+                addressError = error;
+            else if (error.includes("비밀번호"))
+                passwordError = error;
+            else if (error.includes("이름"))
+                nameError = error;
+            else if (error.includes("이메일"))
+                emailError = error;
+        });
+
+        // 각각의 필드에 해당하는 오류 메시지를 설정
+        $("#addressError").html(addressError);
+        $("#passwordError").html(passwordError);
+        $("#nameError").html(nameError);
+        $("#emailError").html(emailError);
     }
+      
+
 }
 
 const handleLogin = async()=>{
