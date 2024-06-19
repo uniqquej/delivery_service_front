@@ -90,13 +90,18 @@ const order = async()=>{
         body : data
     })
     let resJson = await res.json();
-
-    if(resJson.body.status=="ORDERED"){
-        alert("주문 완료");
-        location.replace("orderList.html");
-    } else{
-        alert("주문이 완료되지 않았습니다.");
-        location.reload();
+    
+    if(resJson.result.result_code==200){
+        if(resJson.body.status=="ORDER"){
+            alert("주문 완료");
+            location.replace("orderList.html");
+        } else{
+            alert("주문이 완료되지 않았습니다.");
+            location.reload();
+        }
+    }else{
+        alert("주문이 완료되지 않았습니다.")
+        location.reload()
     }
 
     
