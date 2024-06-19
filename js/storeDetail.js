@@ -1,6 +1,7 @@
 const url = new URL(window.location.href);
 const urlParams = url.searchParams;
 const storeId = Number(urlParams.get('store'))
+const previousPage =urlParams.get('page')
 const category = urlParams.get("category");
 const imgUrl = "http://localhost:8081";
 
@@ -14,6 +15,7 @@ const storeDetailBackBtn = document.getElementById('storeDetailBackBtn');
 
 let loadStoreInfo = async(storeId)=>{
     
+    console.log(previousPage)
     const res = await fetch(`${mainUrl}/api/store/detail?storeId=${storeId}`,{
         headers:{
             'content-type':'application/json',
@@ -40,7 +42,12 @@ let loadStoreInfo = async(storeId)=>{
     let likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">🖤&nbsp&nbsp ${store.likes}</span>`
 
     if(like)likeElement = `<span onclick="likeStore(${storeId})" class="likeBtn">💖&nbsp&nbsp ${store.likes}</span>`
-    storeDetailBackBtn.addEventListener("click",e=>window.location.href = `storeList.html?category=${store.category}`);
+    storeDetailBackBtn.addEventListener("click",e=>{
+        if(previousPage != null)
+            window.location.href = `orderDetail.html?id=${Number(previousPage)}`
+        else
+        window.location.href = `storeList.html?category=${store.category}`
+    });
     
     let storeInfoHtml = `
                 <div class="storeThumbnail">

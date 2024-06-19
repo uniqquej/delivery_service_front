@@ -8,6 +8,12 @@ const urlParams = url.searchParams;
 const orderId = Number(urlParams.get('id'))
 
 const loadOrderDetail = async()=>{
+            
+    let backBtn = document.getElementById("detailBackBtn");
+    backBtn.addEventListener("click",e=>{
+        history.back();
+    });
+
     
     const res = await fetch(`${mainUrl}/api/user-order/id/${orderId}`,{
         headers:{
@@ -33,7 +39,7 @@ const loadOrderDetail = async()=>{
     
     orderHtml += `<div class="orderInfo">
                     <div class="orderStoreInfo">
-                        <span class="storeName"><b>${storeResponse.name}</b></span>
+                        <a href="storeDetail.html?store=${storeResponse.id}&page=${orderId}" class="storeName"><b>${storeResponse.name}</b></a><br>
                         <span>${storeResponse.phone_number}</span>
                     </div>
                     <div class="addressInfo">
