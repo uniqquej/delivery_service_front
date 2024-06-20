@@ -101,34 +101,33 @@ let loadStoreInfo = async(storeId)=>{
 
 }
 
-let getOrderTotalPrice = (obj)=> {
+let getOrderTotalPrice = (obj) => {
+    var orderTotalPrice = Number($("#totalPrice").text());  
+    var menuId = obj.value; 
+    var priceText = $("#price_" + menuId).text();  
+    var price = Number(priceText.slice(0, -1)); 
+    var count = $("#count_" + menuId).val(); 
 
-    var orderTotalPrice = Number($("#totalPrice").text());
-    var menuId = obj.value;
-    var priceText = $("#price_"+menuId).text();
-    var price = Number(priceText.slice(0,-1))
-    var count = $("#count_" + menuId).val();
+    var countDiff = count - parseInt(obj.dataset.oldCount || 0);
 
-    if(obj.checked==true) {
-        if(obj.dataset.oldCount<count) count -= obj.dataset.oldCount;
-
-        orderTotalPrice += price*count;
+    if (obj.checked) {
+        orderTotalPrice += price * countDiff;
+    } else {
+ 
+        orderTotalPrice -= price * (parseInt(obj.dataset.oldCount || 0));
     }
-    else orderTotalPrice -= price*count;
+
+    $("#totalPrice").text(orderTotalPrice);
 
     obj.dataset.oldCount = count;
-
-    $("#totalPrice").html(orderTotalPrice);
 }
 
-let changeCount = (checkObj)=> {
-    var menuId = checkObj.value;
-    var count = $("#count_" + menuId).val();
-    
-    if(checkObj.checked==true) {
-        getOrderTotalPrice(checkObj)
-        checkObj.dataset.oldCount = count;
-    };
+let changeCount = (checkObj) => {
+    var menuId = checkObj.value; 
+    var count = $("#count_" + menuId).val(); 
+
+    getOrderTotalPrice(checkObj);
+    checkObj.dataset.oldCount = count;
 }
 
 let orderCheckMenu = async()=>{
