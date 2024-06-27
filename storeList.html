@@ -18,10 +18,37 @@
             <div id="roleCheck"></div>
             <div id="loginCheck"></div>
         </div>
-        <div id="storeListBox">
+        <div class="wrap">
+            <div class="text-center selectBox">
+                <span>지역</span>
+                <select class="custom-select" id="addressSelect">
+                    <option value="전체" selected>전체</option>
+                    <option value="중구">중구</option>
+                    <option value="동구">동구</option>
+                    <option value="서구">서구</option>
+                    <option value="남구">남구</option>
+                    <option value="북구">북구</option>
+                    <option value="수성구">수성구</option>
+                    <option value="달서구">달서구</option>
+                </select>
+                <span>카테고리</span>
+                <select class="custom-select" id="categorySelect">
+                    <option value="CHINESE_FOOD">중식</option>
+                    <option value="KOREAN_FOOD">한식</option>
+                    <option value="JAPANESE_FOOD">일식</option>
+                    <option value="PIZZA">피자</option>
+                    <option value="CHICKEN">치킨</option>
+                    <option value="HAMBURGER">햄버거</option>
+                    <option value="DESSERT">디저트</option>
+                </select>
+            </div>
+            <div id="storeListBox">
+            </div>
         </div>
+        
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/storeList.js"></script>
     <script src="js/base.js"></script>

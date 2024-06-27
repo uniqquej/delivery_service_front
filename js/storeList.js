@@ -5,12 +5,26 @@ const search = urlParams.get('search');
 const category = urlParams.get("category");
     
 window.onload = ()=>{
-    loadStoreList(category)
+    loadStoreList(category,$("#addressSelect").val())
     loginCheck();
 }
 
-let loadStoreList = async(category)=>{
-    let resUrl = `${mainUrl}/open-api/store/search?category=${category}`
+$("#addressSelect").on("change", function(){
+    let selecCategory = $("#categorySelect").val();
+    loadStoreList(selecCategory, $(this).val());
+})
+
+$("#categorySelect").on("change", function(){
+    let address = $("#addressSelect").val();
+    loadStoreList($(this).val(), address);
+})
+
+let loadStoreList = async(category, region)=>{
+    console.log(region)
+    $("#categorySelect").val(category).prop("selected",true);
+    $("#addressSelect").val(region).prop("selected",true);
+
+    let resUrl = `${mainUrl}/open-api/store/search?category=${category}&region=${region}`
     if(search != null){
         resUrl = `${mainUrl}/open-api/store/search?name=${search}`
     }
