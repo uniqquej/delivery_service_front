@@ -15,7 +15,6 @@ const storeDetailBackBtn = document.getElementById('storeDetailBackBtn');
 
 let loadStoreInfo = async(storeId)=>{
     
-    console.log(previousPage)
     const res = await fetch(`${mainUrl}/api/store/detail?storeId=${storeId}`,{
         headers:{
             'content-type':'application/json',
@@ -68,11 +67,7 @@ let loadStoreInfo = async(storeId)=>{
     let menuListHtml = '';
 
     menuList.forEach(menu=>{
-        if(menu.thumbnail_url=="string"){
-            menu.thumbnail_url = "https://mblogthumb-phinf.pstatic.net/MjAxODAzMDNfMjU4/MDAxNTIwMDQxODA4Mjc0.gR3L5xx3IbpACbvRRF9j9xjJmO-EPAY35oF1AdBnDcog.WZyeqFi6cMmH-v-R-ec44Ny6ZgVyAJIYMT78p4Rxbkwg.PNG.osy2201/2_%2850%ED%8D%BC%EC%84%BC%ED%8A%B8_%ED%9A%8C%EC%83%89%29_%ED%9A%8C%EC%83%89_%EB%8B%A8%EC%83%89_%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4_180303.png?type=w800"
-        }
         
-
         if(menu.thumbnail_url.startsWith("/images/menu/")){
             menu.thumbnail_url = imgUrl+menu.thumbnail_url;
         }
@@ -83,7 +78,7 @@ let loadStoreInfo = async(storeId)=>{
                             <input onchange="getOrderTotalPrice(this)" id="menuCheckBox${menu.id}" class="form-check-input" type="checkbox" value="${menu.id}">
                        </div>
                        <div class="menuThumbnail">
-                           <img src="${menu.thumbnail_url}">
+                           <img id="menuImg_${menu.id}" src="${menu.thumbnail_url}" onerror="this.onerror=null; this.src='https://mblogthumb-phinf.pstatic.net/MjAxODAzMDNfMjU4/MDAxNTIwMDQxODA4Mjc0.gR3L5xx3IbpACbvRRF9j9xjJmO-EPAY35oF1AdBnDcog.WZyeqFi6cMmH-v-R-ec44Ny6ZgVyAJIYMT78p4Rxbkwg.PNG.osy2201/2_%2850%ED%8D%BC%EC%84%BC%ED%8A%B8_%ED%9A%8C%EC%83%89%29_%ED%9A%8C%EC%83%89_%EB%8B%A8%EC%83%89_%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4_180303.png?type=w800'">
                        </div>
                        <div class="menuInfo">
                            <h5><b>${menu.name}</b></h5>
@@ -100,6 +95,7 @@ let loadStoreInfo = async(storeId)=>{
     menuListBox.innerHTML = menuListHtml;
 
 }
+
 
 let getOrderTotalPrice = (obj) => {
     var orderTotalPrice = Number($("#totalPrice").text());  
