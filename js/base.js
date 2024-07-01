@@ -1,4 +1,4 @@
-let mainUrl = "https://api.my-delivery.store";
+let mainUrl = "http://localhost:8080";
 let adminUrl = "http://127.0.0.1:8081";
 
 const loginCheck = ()=>{
