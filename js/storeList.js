@@ -49,7 +49,8 @@ let loadStoreList = async(category, region)=>{
 
     let resUrl = `${mainUrl}/open-api/store/search?size=${pageSize}&category=${category}&region=${region}`
     if(search != null){
-        resUrl = `${mainUrl}/open-api/store/search?size=${pageSize}&name=${search}`
+        resUrl = `${mainUrl}/open-api/store/search?size=${pageSize}&name=${search}&region=${region}`
+        if(category!=null) resUrl += `&category=${category}`
     }
     const res = await fetch(resUrl,{
         headers:{
@@ -60,6 +61,7 @@ let loadStoreList = async(category, region)=>{
     })
     
     let resJson = await res.json();
+    console.log(resJson)
 
     if(resJson.body.content.length!=0)
         lastId = resJson.body.content[resJson.body.content.length - 1].id;
