@@ -1,6 +1,6 @@
 window.onload = ()=>{
     loginCheck();
-    loadStoreReviewList();
+    loadReviewList();
 }
 
 const url = new URL(window.location.href);
@@ -11,9 +11,9 @@ const backLink = ()=>{
     location.replace(`storeDetail.html?store=${storeId}`)
 }
 
-const loadStoreReviewList = async()=>{
+const loadReviewList = async()=>{
 
-    const res = await fetch(`${mainUrl}/api/review/search?storeId=${storeId}`,{
+    const res = await fetch(`${mainUrl}/api/review/search?storeId=${storeId}&page=${currentPage}`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
@@ -22,6 +22,12 @@ const loadStoreReviewList = async()=>{
     })
     
     let resJson = await res.json();
+    
+    let startPage = resJson.body.number+1;
+    finalPage = resJson.body.total_pages;
+
+
+    loadingPageButton(startPage, finalPage);
 
     if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
         alert("로그인이 필요합니다.");
@@ -31,7 +37,7 @@ const loadStoreReviewList = async()=>{
     let myReviewListBox = document.getElementById("reviewListBox");
     let responseHtml = "";
     
-    resJson.body.forEach(review=>{
+    resJson.body.content.forEach(review=>{
         responseHtml += `
         
         <div class="reviewBox">

@@ -1,9 +1,28 @@
 .content{
     height: 86%;
 }
-#reviewListBox{
-    height: 85%;
+
+#myReviewBox{
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+}
+
+.reviewBox{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.reviewBox > a {
+    text-decoration: none;
+    color: black;
+    margin-left: auto;
+    margin-top: 5px;
 }
 
 .reviewHeader {
@@ -11,16 +30,14 @@
     justify-content: flex-start;
 }
 
-.right{
+.star{
     margin-right: auto;
 }
 
-#backTag:hover{
-    cursor: pointer;
-}
 .pagination-container {
     display: flex;
     justify-content: center;
+    margin-top: 18px;
     cursor: pointer;
 }
 
