@@ -11,6 +11,11 @@ const backLink = ()=>{
     location.replace(`storeDetail.html?store=${storeId}`)
 }
 
+const clickPage = (pageNum)=>{
+    currentPage = pageNum;
+    loadReviewList();
+}
+
 const loadReviewList = async()=>{
 
     const res = await fetch(`${mainUrl}/api/review/search?storeId=${storeId}&page=${currentPage}`,{

@@ -3,16 +3,56 @@ window.onload = ()=>{
     loadCurrentOrderList();
 }
 
+const orderBtn = document.getElementById("orderBtn");
+orderBtn.addEventListener("click",()=>{
+    currentPage = 1;
+    loadCurrentOrderList();
+})
+
+const completeOrderBtn = document.getElementById("completeOrderBtn");
+completeOrderBtn.addEventListener("click",()=>{
+    currentPage = 1;
+    loadOrderList();
+})
+
+
+const clickPage = (pageNum)=>{
+    console.log("current")
+    currentPage = pageNum;
+    loadCurrentOrderList();
+}
+
+const clickOrderPage = (pageNum)=>{
+    console.log("history")
+
+    currentPage = pageNum;
+    loadOrderList();
+}
+
+const clickOrderPrev = ()=>{
+    currentPage -= 1;
+
+    if(currentPage>=firstPage)
+        clickOrderPage(currentPage);
+    else currentPage += 1;
+}
+
+const clickOrderNext = ()=>{
+    currentPage += 1;
+
+    if(currentPage<=finalPage)
+        clickOrderPage(currentPage);
+    else currentPage -= 1;
+}
+
 let loadCurrentOrderList = async()=>{
-    const orderBtn = document.getElementById("orderBtn");
-    const completeOrderBtn = document.getElementById("completeOrderBtn");
 
     if(completeOrderBtn.classList.contains("active")) completeOrderBtn.classList.remove("active");
 
     if(!orderBtn.classList.contains("active")) orderBtn.classList.add("active");
 
 
-    const res = await fetch(`${mainUrl}/api/user-order/current`,{
+    const res = await fetch(`${mainUrl}/api/user-order/current?page=${currentPage}`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
@@ -21,6 +61,13 @@ let loadCurrentOrderList = async()=>{
     })
 
     let resJson = await res.json();
+    console.log(resJson)
+
+    let startPage = resJson.body.number+1;
+    finalPage = resJson.body.total_pages;
+
+
+    loadingPageButton(startPage, finalPage);
     
     if(2000<= resJson.result.result_code & resJson.result.result_code<= 2003){
         alert("로그인이 필요합니다.");
@@ -30,7 +77,7 @@ let loadCurrentOrderList = async()=>{
     let orderListBox = document.getElementById("orderListBox");
     let orderHtml=""
 
-    resJson.body.forEach(res => {
+    resJson.body.content.forEach(res => {
         let orderDate = res.user_order_response.ordered_at
         let userOrderResponse = res.user_order_response
         let storeResponse = res.store_response;
@@ -65,15 +112,13 @@ let loadCurrentOrderList = async()=>{
 }
 
 let loadOrderList = async()=>{
-    const orderBtn = document.getElementById("orderBtn");
-    const completeOrderBtn = document.getElementById("completeOrderBtn");
-
+    
     if(orderBtn.classList.contains("active")) orderBtn.classList.remove("active");
 
     if(!completeOrderBtn.classList.contains("active")) completeOrderBtn.classList.add("active");
 
 
-    const res = await fetch(`${mainUrl}/api/user-order/history`,{
+    const res = await fetch(`${mainUrl}/api/user-order/history?page=${currentPage}`,{
         headers:{
             'content-type':'application/json',
             'authorization':localStorage.getItem("access")
@@ -82,11 +127,16 @@ let loadOrderList = async()=>{
     })
 
     let resJson = await res.json();
+    console.log(resJson)
+    let startPage = resJson.body.number+1;
+    finalPage = resJson.body.total_pages;
+
+    loadingOrderPageButton(startPage, finalPage);
 
     let orderListBox = document.getElementById("orderListBox");
     let orderHtml=""
 
-    resJson.body.forEach(res => {
+    resJson.body.content.forEach(res => {
         let orderDate = res.user_order_response.ordered_at
         let userOrderResponse = res.user_order_response
         let storeResponse = res.store_response;

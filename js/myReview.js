@@ -3,6 +3,11 @@ window.onload = ()=>{
     loadReviewList();
 }
 
+const clickPage = (pageNum)=>{
+    currentPage = pageNum;
+    loadReviewList();
+}
+
 const loadReviewList = async()=>{
     const myInfoBtn = document.getElementById("myInfoBtn");
     const myReviewBtn = document.getElementById("myReviewBtn");

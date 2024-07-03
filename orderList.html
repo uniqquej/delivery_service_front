@@ -18,10 +18,15 @@
         </div>
         <div class="content">
             <div>
-                <button class="btn btn-outline-secondary" onclick="loadCurrentOrderList()" id="orderBtn">진행 중인 주문</button>
-                <button class="btn btn-outline-secondary" onclick="loadOrderList()" id="completeOrderBtn">완료된 주문</button>
+                <button class="btn btn-outline-secondary" id="orderBtn">진행 중인 주문</button>
+                <button class="btn btn-outline-secondary" id="completeOrderBtn">완료된 주문</button>
             </div>
             <div id="orderListBox"></div>
+            <div class="pagination-container">
+                <div id="prev-button">이전</div>
+                <div class="number-button-wrapper"><span class="number-button">1</span></div>
+                <div id="next-button">이후</div>
+            </div>
         </div>
 
     </div>
@@ -29,5 +34,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="js/base.js"></script>
     <script src="js/orderList.js"></script>
+    <script src="js/pagination.js"></script>
 </body>
 </html>

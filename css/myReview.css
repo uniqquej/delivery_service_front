@@ -33,26 +33,3 @@
 .star{
     margin-right: auto;
 }
-
-.pagination-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-    cursor: pointer;
-}
-
-.pagination-container > div{
-    margin-left: 7px;
-}
-
-.number-button {
-    margin-left: 4px;
-    margin-right: 4px;
-}
-
-.activePage {
-    background-color: rgb(199, 115, 115);
-    color: white;
-    border-radius: 5px;
-    padding: 2px;
-}
